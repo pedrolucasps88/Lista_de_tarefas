@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <style>
+        li.completed {
+    text-decoration: line-through;
+
+    
+}
+
+button.undo {
+    background-color: #ffcccc;
+    border: none;
+    color: #ff0000;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Minhas tarefas</h1>
+
+    <div id="app"> 
+         <ul></ul>
+         <input type="text" placeholder="Digite uma tarefa...">
+         <button>Adicionar</button>
+    </div>
+
+    <div id="concluidas">
+        <h2>Tarefas Concluídas</h2>
+        <ul></ul>
+      </div>
+
+    <script src="../build/index.js"></script>
+</body>
+</html>
