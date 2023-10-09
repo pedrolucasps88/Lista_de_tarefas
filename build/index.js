@@ -3,6 +3,7 @@ console.log("RODANDO COM SUCESSO");
 let listElement = document.querySelector("#app ul");
 let inputElement = document.querySelector("#app input");
 let buttonElement = document.querySelector("#app button");
+let priorElement = document.querySelector("#app urgenteCheckbox");
 let listaSalva = localStorage.getItem("@listagem_tarefas");
 console.log(listaSalva);
 let tarefas = listaSalva !== null && JSON.parse(listaSalva) || null;
@@ -16,11 +17,13 @@ function listarTarefas() {
         linkElement.setAttribute("href", "#");
         let posicao = tarefas.indexOf(item);
         linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`);
+        linkElement.setAttribute("id", "excluir");
         linkElement.setAttribute("style", "margin-left: 10px ");
         let checkboxElement = document.createElement("input");
         checkboxElement.setAttribute("type", "checkbox");
         checkboxElement.setAttribute("onchange", `marcarComoConcluida(${posicao})`);
         let linkText = document.createTextNode("Excluir");
+        linkElement.setAttribute("style", "margin-left: 50px ");
         linkElement.appendChild(linkText);
         todoElement.appendChild(tarefaText);
         todoElement.appendChild(linkElement);
@@ -31,13 +34,20 @@ function listarTarefas() {
 listarTarefas();
 listarTarefasConcluidas();
 function adicionarTarefa() {
-    if (inputElement.value == "") {
+    if (inputElement.value === "") {
         alert("Digite alguma tarefa!");
         return false;
     }
     else {
         let tarefaDigitada = inputElement.value;
-        tarefas.push(tarefaDigitada);
+        let isUrgente = document.querySelector("#urgenteCheckbox").checked;
+        console.log(isUrgente);
+        let novaTarefa = tarefaDigitada;
+        if (isUrgente) {
+            console.log("urgenteeeeee");
+            novaTarefa = "⚠️ " + tarefaDigitada;
+        }
+        tarefas.push(novaTarefa);
         inputElement.value = "";
         console.log(tarefas);
         listarTarefas();
@@ -66,6 +76,10 @@ function marcarComoConcluida(posicao) {
     listarTarefas();
     listarTarefasConcluidas();
     salvarDados();
+    // Verificar se todas as tarefas foram concluídas
+    if (tarefas.length === 0) {
+        mostrarAnimacaoTrofeu();
+    }
 }
 function listarTarefasConcluidas() {
     let listaConcluidas = document.querySelector("#concluidas ul");
@@ -87,4 +101,22 @@ function desfazerTarefaConcluida(posicao) {
     listarTarefas();
     listarTarefasConcluidas();
     salvarDados();
+}
+function atualizarRelogio() {
+    const relogioElement = document.querySelector("#relogio");
+    const agora = new Date();
+    relogioElement.textContent = agora.toLocaleString();
+}
+setInterval(atualizarRelogio, 1000);
+function mostrarAnimacaoTrofeu() {
+    const trofeuElement = document.getElementById('trofeu');
+    if (trofeuElement) {
+        trofeuElement.style.display = 'block';
+    }
+}
+function continuar() {
+    const trofeuElement = document.getElementById('trofeu');
+    if (trofeuElement) {
+        trofeuElement.style.display = 'none';
+    }
 }
