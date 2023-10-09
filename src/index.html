@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>Minhas Tarefas</title>
+    <style>
+        li.completed {
+    text-decoration: line-through;   
+}
+
+button.undo {
+    background-color: #ffcccc;
+    border: none;
+    color: #ff0000;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+body {
+    font-family: Arial, sans-serif;
+    background-image: linear-gradient(to right, #0e0f11, #15191a, #1b2121, #242a26, #30322b);
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+#app ul {
+    background-image: linear-gradient(to left, #5a5d62, #545c60, #4f5c5b, #4f5a54, #54574c);
+    border-radius: 10px;
+    padding: 10px;
+    list-style-type: none;
+}
+#concluidas ul {
+    background-color: #cac6c6;
+    border-radius: 10px;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#app ul li,
+#concluidas ul li {
+    margin-bottom: 5px;
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#app ul li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+input {
+    font-size: 16px;
+    padding: 10px;
+    margin-left: 40%;
+}
+
+button {
+    background-color: #007BFF;
+    font-size: 16px;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    background-color: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+select {
+    font-size: 14px;
+    padding: 5px;
+}
+button, input[type="checkbox"] {
+    transition: background-color 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #28a745;
+}
+
+input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+}
+
+#concluidas {
+    margin-top: 5%;
+    background-image: linear-gradient(to right bottom, #2a672f, #26732c, #217e27, #1a8a21, #119616);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#concluidas h2 {
+    text-align: center;
+    color: #fff;
+}
+
+#concluidas ul li {
+    background-color: #fff;
+    color: #000;
+}
+#relogio {
+    font-size: 1.2em;
+    margin-left: 10px;
+}
+
+.animacao-trofeu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Inicialmente escondido */
+}
+
+.animacao-trofeu img {
+    max-width: 100px;
+}
+
+.animacao-trofeu button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+
+    <div style="width: 300px;background-color: #f8f9fa;margin-left: 38%;"><h1>Minhas tarefas</h1></div>
+    <div id="divrelogio" style="background-image: radial-gradient(circle, #d3f4d5, #bfdbc1, #acc3ad, #99ab99, #869486);width: 200px;margin-left: 42%;">
+        <span id="relogio"></span>
+    </div>
+    <div id="trofeu" class="animacao-trofeu" style="background-image: linear-gradient(to right, #b4cbb6, #adbfae, #a5b3a6, #9ea79e, #969b96);">
+        <img src="../imgs/trofeu.gif" alt="Troféu">
+        Parabéns por completar todas suas tarefas!
+        <button onclick="continuar()">Continuar</button>
+    </div>
+    <div id="app"> 
+        
+         <ul></ul>
+         <input type="text" placeholder="Digite uma tarefa...">
+         <button><i class="fas fa-plus" style="margin-left: 0px;"></i> Adicionar</button>
+         <div style="color: floralwhite;">
+            <input type="checkbox"  id="urgenteCheckbox" > ⇦ Tarefa Urgente
+        </div>
+         
+    </div>
+
+    <div id="concluidas">
+        <h2>Tarefas Concluídas</h2>
+        <ul></ul>
+      </div>
+
+    <script src="../build/index.js"></script>
+</body>
+</html>
